@@ -88,4 +88,10 @@ public class Base_class {
 		new Select(elem).selectByVisibleText(selText);
 	}
 	
+	public static void deleteOutput() throws IOException{
+		if(fileName.exists()) {
+			fileName.delete();
+		}
+		fileName.createNewFile();
+		}
 }

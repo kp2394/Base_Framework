@@ -1,6 +1,7 @@
 package hrdemoapp;
 
 import java.io.File;
+import java.io.IOException;
 
 import javax.swing.text.Utilities;
 
@@ -26,6 +27,12 @@ public class SecondTest extends Base_class{
 	public static void openBrowser() {
 		//extendTest = extendReport.startTest("Edit Users");
 		initApp();
+	}
+	
+	@BeforeClass
+	public static void openBrowser() throws IOException{
+		//extendTest = extendReport.startTest("Create Users");
+		deleteOutput();
 	}
 	
 	@AfterClass
@@ -67,9 +74,10 @@ public class SecondTest extends Base_class{
 	
 	public static void readTest() {
 		editUser.clickEditBtn();
-		editUser.clickChangePassword();
+		editUser.chkChangePassword();
 		editUser.setTxtPassword("p9121975");
 		editUser.clickEditBtn();
 	}
+	
 
 }
