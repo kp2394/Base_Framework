@@ -12,5 +12,7 @@
 		<class name="hrdemoapp.SecondTest"/>
 	</classes>
 	</test><!--Test-->
-	
+	<listeners>
+<listener class-name = "hrdemoapp.ExtendReportListener"></listener>
+</listeners>
 </suite><!--Suite-->
