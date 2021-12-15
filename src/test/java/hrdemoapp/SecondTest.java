@@ -24,7 +24,7 @@ public class SecondTest extends Base_class{
 	}
 	
 	@BeforeClass
-	public static void openBrowser() {
+	public static void openBrowser1() {
 		//extendTest = extendReport.startTest("Edit Users");
 		initApp();
 	}

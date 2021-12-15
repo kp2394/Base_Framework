@@ -4,8 +4,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 public class ExcelReader {
-	private XSSFWorkbook workbook;
+	private XSSFWorkbook workBook;
 	private XSSFSheet sheet;
 	
 	public ExcelReader(String excelPath) throws IOException{

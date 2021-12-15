@@ -15,14 +15,14 @@ public class EditUsers extends Base_class{
 	
 	@FindBy(how = How.XPATH, using = "//*[@id='systemUser_password']")
 	private static WebElement txtPassword;
-	@FindBy(how, How.XPATH, using = "//*[@id='systemUser_confirmPassword']")
+	@FindBy(how = How.XPATH, using = "//*[@id='systemUser_confirmPassword']")
 	private static WebElement txtConfirmPassword;
 	
-	public EditUser() {
+	public EditUsers() {
 		System.out.println("In EditUser constructor");
 		PageFactory.initElements(driver, this);
 		
-		logger = Logger.getLogger(EditUser.class.getName());
+		Logger logger = Logger.getLogger(EditUsers.class.getName());
 		}
 	public void setTxtPassword(String passwordText) {
 		logger.info("Entering Password");

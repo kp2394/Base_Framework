@@ -2,6 +2,8 @@ package hrdemoapp;
 
 import java.io.IOException;
 
+import org.testng.annotations.DataProvider;
+
 public class UserDataProvider {
 	@DataProvider(name = "Users")
 	public Object[][] provideData() throws IOException{
