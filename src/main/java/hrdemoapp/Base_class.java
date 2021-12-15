@@ -13,6 +13,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.BeforeTest;
 import com.relevantcodes.extendreports.ExtendReports;
+import com.relevantcodes.extentreports.ExtentTest;
 import com.releventcodes.extendreports.ExtendTest;
 
 //This is the Base Class
