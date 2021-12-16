@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
-
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
@@ -39,6 +38,7 @@ public class Base_class {
 	
 	public static void populateDriver() {
 		driver = SingletonDriver.getSingletonInstance();
+		wdWait = new WebDriverWait(driver, 60);
 	}
 	
 	public static void initApp() {
@@ -73,19 +73,23 @@ public class Base_class {
 		return prop.getProperty(propKey);
 	}
 	
-	public static void enterTest(WebElement elem, String text) {
+	public static void enterText(WebElement elem, String text) {
+		wdWait.until(ExpectedConditions.visibilityOf(elem));
 		elem.sendKeys(text);
 	}
 	
 	public static void clickButton(WebElement elem){
+		wdWait.until(ExpectedConditions.elementToBeClickable(elem));
 		elem.click();
 	}
 	
 	public static void clickLink(WebElement elem) {
+		wdWait.until(ExpectedConditions.elementToBeClickable(elem));
 		elem.click();
 	}
 	
 	public static void selectValue(WebElement elem, String selText) {
+		wdWait.until(ExpectedConditions.visibilityOf(elem));
 		new Select(elem).selectByVisibleText(selText);
 	}
 	
