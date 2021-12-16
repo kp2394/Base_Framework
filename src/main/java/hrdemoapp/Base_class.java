@@ -1,4 +1,6 @@
 package hrdemoapp;
+import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -99,4 +101,37 @@ public class Base_class {
 		}
 		fileName.createNewFile();
 		}
+	public static void mouseMove(WebElement elem) {
+		actions.moveToElement(elem).build().perform();
+	}
+	public static void doubleClickElement(WebElement elem) {
+		actions.doubleClick(elem).build().perform();
+	}
+	
+	public static void fileUpload() {
+		//Delay of 2 seconds
+		robot.setAutoDelay(2000);
+		//Delay of 2 seconds
+		
+		//Simulates CTRL + C
+		stringSelection = new StringSelection("C:\\dummy\\dummy.jpg");
+		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
+		//Simulates CTRL+C
+		
+		//Simulates CTRL+V
+		robot.setAutoDelay(2000);
+		robot.keyPress(KeyEvent.VK_CONTROL);
+		
+		robot.keyPress(KeyEvent.VK_V);
+
+		robot.keyPress(KeyEvent.VK_CONTROL);	
+		robot.keyPress(KeyEvent.VK_V);
+		//Simulates CTRL+V
+		
+		//Simulates ENTER key press
+		robot.setAutoDelay(2000);
+		robot.keyPress(KeyEvent.VK_ENTER);
+		robot.keyPress(KeyEvent.VK_ENTER);
+		//simulates ENTER key press
+	}
 }

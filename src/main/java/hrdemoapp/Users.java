@@ -105,9 +105,9 @@ public class Users extends Base_class{
 		logger.info("Clicking save button");
 		clickButton(btnSave);
 		}
-	public EditUser clickUserLink() {
+	public EditUsers clickUserLink() {
 		logger.info("Clicking users link");
 		clickButton(lnkResults);
-		return new EditUser();
+		return new EditUsers();
 	}
 }

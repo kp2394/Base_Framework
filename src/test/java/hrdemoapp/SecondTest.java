@@ -5,6 +5,8 @@ import java.io.IOException;
 
 import javax.swing.text.Utilities;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -23,16 +25,14 @@ public class SecondTest extends Base_class{
 		super();
 	}
 	
-	@BeforeClass
-	public static void openBrowser1() {
-		//extendTest = extendReport.startTest("Edit Users");
-		initApp();
-	}
 	
 	@BeforeClass
 	public static void openBrowser() throws IOException{
 		//extendTest = extendReport.startTest("Create Users");
 		deleteOutput();
+		
+		//extendTest = extendReport.startTest("Edit Users");
+				initApp();
 	}
 	
 	@AfterClass
@@ -73,8 +73,15 @@ public class SecondTest extends Base_class{
 	}
 	
 	public static void readTest() {
+		//Thread.sleep(3000);
+		try {
+			wdWait.until(ExpectedConditions.presenceOfElementLocated((By.xpath("//div[@class='message success fadable']"))));
+			System.out.println("After waiting");
+		}catch (Exception e) {
+			logger.info("Text not found");
+		}
 		editUser.clickEditBtn();
-		editUser.chkChangePassword();
+		editUser.clickChangePassword();
 		editUser.setTxtPassword("p9121975");
 		editUser.clickEditBtn();
 	}

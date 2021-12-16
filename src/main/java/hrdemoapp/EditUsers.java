@@ -29,6 +29,11 @@ public class EditUsers extends Base_class{
 		clickButton(chkChangePassword);
 		}
 	
+	public void clickChangePassword() {
+		logger.info("Clicking Change Password");
+		clickButton(chkChangePassword);
+	}
+	
 	public void clickEditBtn() {
 		logger.info("Clicking Edit Button");
 		clickButton(btnEdit);

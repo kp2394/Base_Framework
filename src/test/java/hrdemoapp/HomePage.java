@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class HomePage extends Base_class{
 	//private WebDriver driver;
@@ -14,14 +15,21 @@ public class HomePage extends Base_class{
 	private static WebElement mnuAdmin;
 	@FindBy(how = How.XPATH, using = "//*[@id='menu_admin_UserManagement']")
 	private static WebElement mnuUserManagement;
+	
 	@FindBy(how = How.XPATH, using = "//*[@id='menu_admin_viewSystemUsers']")
 	private static WebElement mnuUsers;
 	@FindBy(how = How.XPATH, using = "//*[@id='welcome']")
 	private static WebElement lnkWelcome;
+	
 	@FindBy(how = How.XPATH, using = "//*[text()='Logout']")
 	private static WebElement lnkLogout;
 	@FindBy(how = How.XPATH, using = "//*[@id='welcome']")
 	private static WebElement txtWelcome;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='menu_pim_viewPimModule']")
+	private static WebElement lnkPIM;
+	@FindBy(how = How.XPATH, using = "//*[@id='menu_pim_viewEmployeeList']")
+	private static WebElement lnkEmpList;
 	
 	public HomePage(WebDriver driver) {
 		System.out.println("In HomePage Constructor");
@@ -70,6 +78,15 @@ public class HomePage extends Base_class{
 			e.printStackTrace();
 		}
 		clickLink(lnkLogout);
+	}
+	
+	public Employee hoverPIMEmployeeLst() throws InterruptedException {
+		logger.info("Hovering on PIM and Employee list link");
+		wdWait.until(ExpectedConditions.visibilityOf(lnkPIM));
+		mouseMove(lnkPIM);
+		wdWait.until(ExpectedConditions.visibilityOf(lnkEmpList));
+		clickLink(lnkEmpList);
+		return new Employee(Base_class.driver);
 	}
 
 }
