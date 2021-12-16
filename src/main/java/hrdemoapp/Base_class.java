@@ -9,6 +9,8 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -133,5 +135,24 @@ public class Base_class {
 		robot.keyPress(KeyEvent.VK_ENTER);
 		robot.keyPress(KeyEvent.VK_ENTER);
 		//simulates ENTER key press
+	}
+	
+	public static void takeScreenshot(WebDriver driver, String screenshotName) {
+		//Create TakesScreenshot object using WebDriver instance
+		TakesScreenshot ts = (TakesScreenshot)driver;
+		
+		//capture the screenshot in the source
+		File source = ts.getScreenshotAs(OutputType.FILE);
+		//create destination
+		String dest = System.getProperty("user.dir")+"/ScreenShots/"+screenshotName+".png";
+		
+		//Create the destination File Object
+		File destination = new File(dest);
+		try {
+			//Copy screenshot from source to destination using the FileUtils class
+			FileUtils.copyFile(source, destination);
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
