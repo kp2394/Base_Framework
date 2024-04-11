@@ -9,7 +9,7 @@ public class Employee extends Base_class{
 		Base_class.driver = driver;
 		PageFactory.initElements(driver, this);
 		
-		logger = Logger.getLogger(Employee.class.getName());
+		logger = java.util.logging.Logger.getLogger(Employee.class.getName());
 	}
 
 }

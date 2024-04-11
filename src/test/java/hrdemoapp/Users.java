@@ -1,6 +1,9 @@
 package hrdemoapp;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 
 import javax.swing.text.Utilities;
 
@@ -47,7 +50,7 @@ public class Users extends Base_class{
 		System.out.println("In Users constructor");
 		PageFactory.initElements(driver, this);
 		
-		logger = Logger.getLogger(Users.class.getName());
+		logger = java.util.logging.Logger.getLogger(Users.class.getName());	
 		}
 	public Boolean userNameDisplayed() {
 		logger.info("Returning username disaplyed information");
@@ -80,7 +83,13 @@ public class Users extends Base_class{
 		}
 	public void writeToFile(File file) {
 		logger.info("Writing to file");
-		Utilities.write(duserNameText, file);
+		
+		try (FileWriter writer = new FileWriter(file)){
+			writer.write(duserNameText);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void selectUserStatus(String selectText) {
