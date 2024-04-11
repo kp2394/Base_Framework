@@ -8,10 +8,16 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
+import java.awt.Robot;
+import java.awt.datatransfer.StringSelection;
+import org.apache.commons.io.FileUtils;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.BeforeTest;
 
@@ -27,13 +33,18 @@ public class Base_class {
 	static WebDriver driver = null;
 	public static Logger logger = null;
 	public static WebDriverWait wdWait;
+	public static Robot robot = null;
+	public static StringSelection stringSelection = null;
+	public static Actions actions = null;
+	public static File fileName;
+	Loginpage Login = new Loginpage();
 	//{
 	//extendReport = new ExtendReports{
 	// "C:\\Users\\USER\\Desktop\extendreport.html");
 	//}
 	@BeforeTest
 	public static void loadLog4j() {
-		String log4Jpath = System.getProperty("user.dir") + "/log4j.properties";
+		String log4Jpath = System.getProperty("user.dir") + "/log4j2.properties";
 		PropertyConfigurator.configure(log4Jpath);
 	}
 	
@@ -48,15 +59,16 @@ public class Base_class {
 	
 	public static void initApp() {
 		populateDriver();
-		String URL = getPorperty("URL");
-		navigtateToURL(URL);
+		String URL = getProperty("URL");
+		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+		driver.get(URL);
 	}
 	
-	public static Login navigateToURL(String URL) {
-		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-		driver.navigate().to(URL);
-		return new Login(driver);
-	}
+//	public static Login navigateToURL(String URL) {
+//		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+//		driver.navigate().to(URL);
+//		return new Login(driver);
+//	}
 	
 	static File file = new File(".//src/main/resources/config/config.properties");
 	

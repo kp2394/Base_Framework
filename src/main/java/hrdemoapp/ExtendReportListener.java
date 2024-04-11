@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
+
 import org.testng.IReporter;
 import org.testng.IResultMap;
 import org.testng.ISuite;
@@ -18,11 +20,11 @@ import com.relevantcodes.extentreports.LogStatus;
 
 public class ExtendReportListener implements IReporter{
 	//create ExtendReports object;
-	private ExtendReports extend;
+	private ExtentReports extend;
 	//This method creates the report and iterates over the list of ISuites
 	
 	public void generateReport(List<XmlSuite> xmlSuites, List<ISuite> suites, String outputDirectory) {
-		extend = new ExtendReports(outputDirectory + File.separator + "OutputExtendReport.html", true);
+		extend = new ExtentReports(outputDirectory + File.separator + "OutputExtendReport.html", true);
 		for(ISuite testSuite:suites) {
 			Map<String, ISuiteResult>testResult = testSuite.getResults();
 			
@@ -41,7 +43,7 @@ public class ExtendReportListener implements IReporter{
 	}
 	
 	private void buildTestNodes(IResultMap tests, LogStatus status) {
-		ExtendTest test;
+		ExtentTest test;
 		if(tests.size() > 0) {
 			for(ITestResult result : tests.getAllResults()) {
 				test = extend.startTest(result.getMethod().getMethodName());
