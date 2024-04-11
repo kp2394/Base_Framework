@@ -9,14 +9,14 @@ import org.testng.annotations.Test;
 
 public class ThirdTest extends Base_class{
 	static int i = 0;
-	static Login login = null;
+	static Loginpage login = null;
 	static HomePage homePage = null;
 	static Users usersPage = null;
 	static Boolean txtuserNameExists = false;
 	
 	public ThirdTest() {
 		super();
-		login = new Login(driver);
+		login = new Loginpage();
 	}
 	
 	@BeforeClass
@@ -26,7 +26,7 @@ public class ThirdTest extends Base_class{
 	}
 	
 	@AfterClass
-	public static void closeBrowser() throws IOExpection {
+	public static void closeBrowser() throws IOException {
 		driver.quit();
 		driver = null;
 	}
@@ -37,14 +37,14 @@ public class ThirdTest extends Base_class{
 		login.enterUserName(getProperty("USERNAME"));
 		login.enterPassword(getProperty("Password"));
 		homePage = login.clickLogin();
-		homepageText = homePage.getWelcomeText();
+		homePageText = homePage.getWelcomeText();
 		
 		System.out.println(getProperty("WELCOMEMSG"));
-		Assert.assertEquals(homepageText, getProperty("WELCOMEMSG"),getProperty("ERRORMSG"));
+		Assert.assertEquals(homePageText, getProperty("WELCOMEMSG"),getProperty("ERRORMSG"));
 	}
 	
 	@Test(dependsOnMethods = "loginToApplication")
-	public static void hoverEmployeeLst() throws InterruptedExpection {
+	public static void hoverEmployeeLst() throws InterruptedException {
 		homePage.hoverPIMEmployeeLst();
 	}
 

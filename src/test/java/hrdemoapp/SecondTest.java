@@ -3,23 +3,28 @@ package hrdemoapp;
 import java.io.File;
 import java.io.IOException;
 
-import javax.swing.text.Utilities;
+import java.util.*;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import dataProvider.ConfigFileReader;
+
 public class SecondTest extends Base_class{
 	private static File fileName;
-	static Login login = new Login(driver);
+	static Loginpage login = new Loginpage();
 	static Boolean txtuserNameexists = false;
 	
 	static HomePage homePage = null;
 	static Users usersPage = null;
 	static EditUsers editUser = null;
+	static WebDriverWait wdWait;
 	
 	public SecondTest() {
 		super();
@@ -61,15 +66,15 @@ public class SecondTest extends Base_class{
 		txtuserNameexists = usersPage.userNameDisplayed();
 		Assert.assertTrue(txtuserNameexists);
 		
-		fileName = new File("C:\\Users\\USER\\Desktop\\users.txt");
-		String[] returnArray = Utilities.readFile(fileName);
-		for(int i = 0; i < returnArray.length;i++) {
-			System.out.println("Array item" + i + "="+returnArray[i]);
-			usersPage.setTxtSearch(returnArray[i]);
-			usersPage.clickSrchBtn();
-			editUser = usersPage.clickUserLink();
-			readTest();
-		}
+//		fileName = new File("C:\\Users\\USER\\Desktop\\users.txt");
+//		String returnArray = FileUtils.readFileToString(fileName);
+//		for(int i = 0; i < returnArray.length();i++) {
+//			System.out.println("Array item" + i + "="+returnArray[i]);
+//			usersPage.setTxtSearch(returnArray[i]);
+//			usersPage.clickSrchBtn();
+//			editUser = usersPage.clickUserLink();
+//			readTest();
+//		}
 	}
 	
 	public static void readTest() {

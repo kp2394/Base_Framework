@@ -1,6 +1,16 @@
 package hrdemoapp;
 
-import org.apache.log4j.Logger;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+
+import java.util.logging.Logger;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,10 +25,11 @@ public class Loginpage extends Base_class{
 	@FindBy(how = How.XPATH, using ="//*[@id='btnLogin']")
 	private static WebElement btnLogin;
 	
-	public Login(WebDriver driver) {
+	
+	public Loginpage() {
 		Base_class.driver = driver;
 		PageFactory.initElements(driver, this);
-		logger = java.util.logging.Logger.getLogger(Login.class.getName());	
+		logger = java.util.logging.Logger.getLogger(Loginpage.class.getName());	
 	}
 	
 	public void enterUserName(String userName) {
@@ -36,5 +47,6 @@ public class Loginpage extends Base_class{
 		clickButton(btnLogin);
 		return new HomePage(driver);
 	}
+
 	
 }
