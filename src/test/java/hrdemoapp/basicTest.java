@@ -4,19 +4,23 @@ import java.io.File;
 
 import javax.swing.text.Utilities;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
+import java.util.logging.Logger;
 public class basicTest extends Base_class{
 	static int i = 0;
-	static Login login = new Login(driver);
+	static Loginpage login = new Loginpage();
 	static HomePage homePage = null;
 	static Users usersPage = null;
 	static Boolean txtuserNameexists = false;
+	static Logger logger;
+	static WebDriverWait wdWait;
 	
 	static File fileName;
 	
@@ -40,7 +44,7 @@ public class basicTest extends Base_class{
 	@Test
 	public static void loginToApplication() {
 		String homepageText = null;
-		login.enterUserName(getPreperty("USERNAME"));
+		login.enterUserName(getProperty("USERNAME"));
 		login.enterPassword(getProperty("PASSWORD"));
 		homePage = login.clickLogin();
 		homepageText = homePage.getWelcomeText();
@@ -65,7 +69,7 @@ public class basicTest extends Base_class{
 		usersPage.clickAdd();
 		usersPage.selectUserType(userType);
 		usersPage.enterEmpName(empName);
-		usersPage.enterUserName(userName + Utilities.getTimeStamp());
+		usersPage.enterUserName(userName);
 		usersPage.enterPassword(password);
 		usersPage.enterConfPassword(confPassword);
 		usersPage.clickSave();

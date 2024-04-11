@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HomePage extends Base_class{
 	//private WebDriver driver;
@@ -30,6 +31,10 @@ public class HomePage extends Base_class{
 	private static WebElement lnkPIM;
 	@FindBy(how = How.XPATH, using = "//*[@id='menu_pim_viewEmployeeList']")
 	private static WebElement lnkEmpList;
+	
+	public Logger logger;
+	
+	public WebDriverWait wdWait;
 	
 	public HomePage(WebDriver driver) {
 		System.out.println("In HomePage Constructor");
